@@ -1,0 +1,62 @@
+﻿@model Sheet5.Models.Receipt
+@{
+    ViewBag.Title = "Receipt";
+}
+<table style="width: 50%; margin-left: auto; margin-right: auto; background-color: dimgray; border: 3px solid black;">
+    <tr>
+        <th colspan="2" class="text-capitalize text-center">
+            <h1>Receipt</h1>
+        </th>
+    </tr>
+    <tr>
+        <td colspan="2" class="text-center">
+            <h4>@Model.getDate()</h4>
+        </td>
+    </tr>
+    <tr>
+        <th>Type of Sub: </th>
+        <td>@Html.DisplayFor(model => model.SubType)</td>
+    </tr>
+    <tr>
+        <th>Sub Size: </th>
+        <td>@Html.DisplayFor(model => model.SubSize)</td>
+    </tr>
+    <tr>
+        <th>Meal Deal Selected: </th>
+        <td>@Html.DisplayFor(model => model.MealDeal)</td>
+    </tr>
+    <tr>
+        <th>Amount Wanted: </th>
+        <td>@Html.DisplayFor(model => model.AmountWanted)</td>
+    </tr>
+    <tr>
+        <th>Total Price of Sub: </th>
+        <td>$@Html.DisplayFor(model => model.totalSubPrice)</td>
+    </tr>
+    <tr>
+        <th>Price of Meal Deal: </th>
+        <td>$@Html.DisplayFor(model => model.mealDealPrice)</td>
+    </tr>
+    <tr style="padding: 100px;"><td> </td></tr>
+    <tr>
+        <th>Cost: </th>
+        <td>$@Html.DisplayFor(model => model.totalReceiptCost)</td>
+    </tr>
+    <tr>
+        <th>Taxes: </th>
+        <td>$@Model.getTaxes()</td>
+    </tr>
+    <tr>
+        <th>Total Due: </th>
+        <td>$@Model.getTotalPrice()</td>
+    </tr>
+    <tr>
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+        {
+            <td colspan="2" class="text-center" style="padding-top: 20px;">
+                <input type="submit" value="Next Order" class="btn-primary" />
+            </td>
+        }
+    </tr>
+</table>
+

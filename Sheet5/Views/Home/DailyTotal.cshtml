@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "DailyTotal";
+}
+
+    <table style="width: 50%; margin-left: auto; margin-right: auto; background-color: dimgray; border: 3px solid black;">
+        @if (ViewData["taxesTotal"] != null && (double)ViewData["taxesTotal"] != 0 &&
+             ViewData["incomeTotal"] != null && (double)ViewData["incomeTotal"] != 0)
+        {
+            <tr>
+                <th colspan="2" class="text-capitalize text-center">
+                    <h1>Daily Totals</h1>
+                </th>
+            </tr>
+            <tr>
+                <th>Total Taxes of the Day: </th>
+                <td>$@ViewData["taxesTotal"]</td>
+            </tr>
+            <tr>
+                <th>Total Income of the Day: </th>
+                <td>$@ViewData["incomeTotal"]</td>
+            </tr>
+
+        }
+        else
+        {
+            <tr>
+                <th class="text-capitalize text-center"><h1>Daily Totals</h1></th>
+            </tr>
+            <tr>
+                <td class="text-center">@("No totals calculated today.")</td>
+            </tr>
+
+        }
+        <tr>
+            @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+            {
+                <td colspan="2" class="text-center" style="padding-top: 10px;">
+                    <input type="submit" value="Go Back" class="btn-primary" />
+                </td>
+            }
+        </tr>
+    </table>
+
