@@ -1,4 +1,4 @@
-﻿
+﻿@using Sheet5.Models
 @{
     ViewBag.Title = "DailyTotal";
 }
@@ -8,34 +8,54 @@
              ViewData["incomeTotal"] != null && (double)ViewData["incomeTotal"] != 0)
         {
             <tr>
-                <th colspan="2" class="text-capitalize text-center">
+                <th colspan="4" class="text-capitalize text-center">
                     <h1>Daily Totals</h1>
                 </th>
             </tr>
             <tr>
-                <th>Total Taxes of the Day: </th>
-                <td>$@ViewData["taxesTotal"]</td>
+                <th colspan="2">Total Taxes of the Day: </th>
+                <td colspan="2">$@ViewData["taxesTotal"]</td>
             </tr>
             <tr>
-                <th>Total Income of the Day: </th>
-                <td>$@ViewData["incomeTotal"]</td>
+                <th colspan="2">Total Income of the Day: </th>
+                <td colspan="2">$@ViewData["incomeTotal"]</td>
             </tr>
-
+            if (ViewData["receipts"] != null)
+            {
+                <tr>
+                    <th colspan="4" class="text-center" style="padding-top: 15px; padding-bottom: 15px;">Orders</th>
+                </tr>
+                <tr>
+                    <th>SubType</th>
+                    <th>Subsize</th>
+                    <th>Meal Deal</th>
+                    <th>Quanity</th>
+                </tr>
+                foreach (var receipt in (List<Receipt>)ViewData["receipts"])
+                {
+                    <tr>
+                        <td>@receipt.SubType</td>
+                        <td>@receipt.SubSize</td>
+                        <td>@receipt.MealDeal</td>
+                        <td>@receipt.AmountWanted</td>
+                    </tr>
+                }
+            }
         }
         else
         {
             <tr>
-                <th class="text-capitalize text-center"><h1>Daily Totals</h1></th>
+                <th class="text-capitalize text-center" colspan="4"><h1>Daily Totals</h1></th>
             </tr>
             <tr>
-                <td class="text-center">@("No totals calculated today.")</td>
+                <td class="text-center" colspan="4">@("No totals calculated today.")</td>
             </tr>
 
         }
         <tr>
             @using (Html.BeginForm("Index", "Home", FormMethod.Get))
             {
-                <td colspan="2" class="text-center" style="padding-top: 10px;">
+                <td colspan="4" class="text-center" style="padding-top: 10px;">
                     <input type="submit" value="Go Back" class="btn-primary" />
                 </td>
             }

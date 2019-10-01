@@ -37,7 +37,8 @@ namespace Sheet5.Controllers
             receipt.totalSubPrice = Math.Round(priceOfSelectedSubType * priceOfSelectedSubSize, 2);
             receipt.totalReceiptCost = Math.Round((receipt.totalSubPrice + priceOfSelectedMealDeal) * receipt.AmountWanted, 2);
 
-            var receipts = new List<Receipt>();
+            var receipts = new List<Receipt>();
+
 
             if (Session["Receipts"] != null)
             {
@@ -51,7 +52,8 @@ namespace Sheet5.Controllers
 
         public ActionResult DailyTotal()
         {
-            var receipts = new List<Receipt>();
+            var receipts = new List<Receipt>();
+
 
             if (Session["Receipts"] != null)
             {
@@ -65,7 +67,7 @@ namespace Sheet5.Controllers
                 taxesTotal += receipt.getTaxes();
                 incomeTotal += receipt.getTotalPrice();
             }
-
+            ViewData["receipts"] = receipts;
             ViewData["taxesTotal"] = taxesTotal;
             ViewData["incomeTotal"] = incomeTotal;
             return View();
